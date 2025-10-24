@@ -1,0 +1,38 @@
+
+
+******************KAFKA CONNECTION BY DOCKER*****************
+
+Kafka Broker — the main server where messages are stored.
+
+Zookeeper — used by Kafka to manage brokers (needed for local setup).
+
+Node.js App — acts as producer and consumer via REST APIs.
+
+1. install docker destop
+	docker --version, after installation -ensure Docker daemon is active.
+	
+2. run KAFKA and ZOOKEEPER using DOCKER
+	create a file name "docker-compose.yml" and in integrated terminal, run the file with ********"docker-compose up -d"********
+	
+							version: '3'
+							services:
+							zookeeper:
+							image: wurstmeister/zookeeper
+							ports:
+								- "2181:2181"
+
+							kafka:
+							image: wurstmeister/kafka
+							ports:
+								- "9092:9092"
+							environment:
+								KAFKA_BROKER_ID: 1
+								KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+								KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+								KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+							depends_on:
+								- zookeeper
+
+3. verify containers
+	docker ps
+		-you should see both kafka and zookeeper running
