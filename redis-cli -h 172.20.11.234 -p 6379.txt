@@ -1,0 +1,1 @@
+run redis-cli -h 172.20.11.234 -p 6379 in WSL cli to enter redis

@@ -1,0 +1,68 @@
+
+
+
+REDIS Connection- 
+
+satwik.kondapalli01@gmail.com
+90h719ii
+
+*****************WSL Ubuntu installation****************
+
+1. open wsl terminal 
+		sudo apt update
+		sudo apt upgrade -y
+2. install redis
+		sudo apt install redis-server -y
+3. enable redis and start it
+		sudo systemctl enable redis-server
+		sudo systemctl start redis-server    --restart server (sudo systemctl restart redis-server)
+4. check if redis is running
+	redis-cli ping
+5***. edit Redis Conf
+	sudo nano /etc/redis/redis.conf
+6. change bind 127.0.0.1 to bind 0.0.0.0
+7. change protection-mode to no
+8. restart redis	
+	sudo systemctl restart redis-server
+9. find your WSL IP address
+	ip addr show eth0
+10.connect from windows
+	redis-cli -h <WSL_IP> -p 6379
+
+
+
+
+
+*****************DOCKER-REDIS installation****************
+
+1. open WSL CLI
+	docker pull redis
+	docker run -d --name my-redis -p 6379:6379 redis
+	docker ps
+	redis-cli -h 127.0.0.1 -p 6379
+
+
+
+
+*****************REDIS CLI CMDS****************
+
+1. PING		-check connection, returns pong
+2. KEYS *	-list all keys in redis
+3. EXISTS key1	-check if a key exists
+4. TYPE key1	-find out what type of value is stored
+5. TTL key1		-time-to-live(in seconds) before key expires
+
+6. SET <key_name> <key_value>		-store a simple string
+7. GET <key_name>					-retrieve a string value
+8. SETEX <key_name> 60 <key_value>	-store key with expiry time
+9. MSET <key_name> <key_value> <key_name> <key_value>		-store multiple keys at once
+10. MGET <key_name1> <key_name2>	-retrieve multiplekeys at once
+
+11. DEL <key_name>		-delete a key
+12. FLUSHDB				-delete all keys from the current DB
+13.FLUSHALL 			-delete all keys from all DB's
+
+14. DBSIZE				-count keys in the current DB
+15. INFO				-get server info
+16. SELECT 0			-swtich to DB 0
+17. CONFIG GET * 		- view all configuration settings
