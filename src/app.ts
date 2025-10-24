@@ -1,7 +1,7 @@
 import express from 'express';
 import { client } from './redis/redis';
 import { approuter } from './routing';
-import { connectKafka } from './kafka';
+import { connectKafka } from './kafka/kafka';
 
 const app = express();
 

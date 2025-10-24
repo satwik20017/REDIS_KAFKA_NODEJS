@@ -1,5 +1,5 @@
 import express from 'express';
-import { producer, connectKafka } from '../kafka';
+import { producer, connectKafka } from '../kafka/kafka';
 
 export const KAFKA_ROUTER = express();
 KAFKA_ROUTER.use(express.json());

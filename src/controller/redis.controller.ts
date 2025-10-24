@@ -2,10 +2,10 @@ import express from 'express';
 import axios from 'axios';
 import { client } from '../redis/redis';
 
-export const APP_CONTROLLER = express();
+export const REDIS_CONTROLLER = express();
 
 
-APP_CONTROLLER.get('/getMessage', (req, res) => {
+REDIS_CONTROLLER.get('/getMessage', (req, res) => {
     return res.send(`Done routing`);
 })
 
@@ -39,7 +39,7 @@ export async function cache(req, res, next) {
 
 
 
-APP_CONTROLLER.get('/repos', cache, async (req, res) => {
+REDIS_CONTROLLER.get('/repos', cache, async (req, res) => {
     try {
         console.log(`fetching data....`);
 
@@ -67,7 +67,7 @@ APP_CONTROLLER.get('/repos', cache, async (req, res) => {
     }
 })
 
-APP_CONTROLLER.get('/users/:id', async (req, res) => {
+REDIS_CONTROLLER.get('/users/:id', async (req, res) => {
     const { id } = req.params;
     const key = `USERS_${id}`;
 
